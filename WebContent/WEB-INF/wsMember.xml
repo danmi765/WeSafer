@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans.xsd">
+	 
+	 
+	<!-- Mapper이용 -->
+	<bean id="memberMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.wesafer.member.mapper.MemberMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	 <bean id="memberBean" class="com.wesafer.bean.MemberBean" />
+	 <bean id="memberService" class="com.wesafer.member.service.MemberService" />
+	 <bean id="pageNumberingManager" class="util.PageNumberingManager" />
+	 
+<!-- news -->
+	 <bean id="newsMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	 	<property name="mapperInterface" value="com.wesafer.news.mapper.NewsMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	 </bean>
+	 <bean id="newsBean" class="com.wesafer.bean.NewsBean"/>
+	 <bean id="newsService" class="com.wesafer.news.service.NewsService"/>
+	 
+<!-- comm 섹션 시작점 -->
+	 <bean id="commMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.wesafer.comm.mapper.CommMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	 </bean>
+	 <bean id="commService" class="com.wesafer.comm.service.CommService" />
+	 	 	 
+	 <bean id="infoBean" class="com.wesafer.bean.InfoBean" />
+	 
+	 <!-- 코멘트 -->
+	<bean id="commentBean" class="com.wesafer.bean.CommentBean" />
+<!-- comm 섹션 종료점 -->
+
+<!-- info 섹션 시작점 -->
+	 <bean id="infoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.wesafer.info.mapper.InfoMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	 </bean>
+	 <bean id="infoService" class="com.wesafer.info.service.InfoService" />
+<!-- info 섹션 종료점 -->
+
+<!-- paging start -->
+	<bean id="pagingManager" class="util.PagingManager" />
+<!-- paging end -->
+
+<!-- go -->
+	<bean id="GoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.wesafer.go.mapper.GoMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+		
+		
+	 <bean id="barChartBean" class="chart.BarChartBean" />
+	 <bean id="statsBean" class="com.wesafer.bean.StatsBean" />
+	 <bean id="tablestatsBean" class="com.wesafer.bean.TablestatsBean" />
+	 <bean id="goService" class="com.wesafer.go.service.GoService" />
+	 
+	 
+	<!-- Spring3 이상, jackson 라이브러리 2 이상일 때는 MappingJackson2JsonView 로 설정. -->
+	<bean id="jsonMapper" class="com.fasterxml.jackson.databind.ObjectMapper" />
+	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+		<property name="objectMapper" ref="jsonMapper" />
+	</bean>
+</beans>

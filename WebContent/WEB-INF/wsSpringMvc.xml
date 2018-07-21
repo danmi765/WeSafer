@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans.xsd
+	 http://www.springframework.org/schema/mvc
+	 http://www.springframework.org/schema/mvc/spring-mvc.xsd 
+	 http://www.springframework.org/schema/context 
+	 http://www.springframework.org/schema/context/spring-context.xsd">  
+	 
+	 <!-- MVC 설정 -->
+	 <mvc:annotation-driven />
+	 <mvc:default-servlet-handler/>
+	 <mvc:resources mapping="/resources/**" location="/resources/" />
+	 
+	 <!-- viewResolver -->
+	 <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	 	<property name="order" value="2" />
+	 	<property name="prefix" value="/WEB-INF/views/" />
+	 	<property name="suffix" value=".jsp" />
+	 </bean>
+	 
+	 <!-- Tiles configuration -->
+    <bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
+        <property name="order" value="1"/>
+    </bean>
+ 
+    <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <property name="definitions">
+            <list>
+                 <value>/WEB-INF/tiles/tiles-layout.xml</value>
+            </list>
+        </property>
+    </bean> 
+	 
+    <context:component-scan base-package="com.wesafer" />
+    <context:component-scan base-package="util" />
+    
+    	<!-- MultipartResolver Bean -->
+	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver"/>
+	
+		<!-- 다음오픈에디터 저장소 -->
+	<mvc:resources mapping="/upload/**" location="/upload/"/>
+	
+	
+   
+	
+	 
+</beans>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 3.1//EN"
+	"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+	
+<tiles-definitions>
+
+	<definition name="main" templateExpression="/WEB-INF/tiles/template/template.jsp">
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/template/footer.jsp" />
+		<put-attribute name="header" value="/WEB-INF/tiles/template/header.jsp" />
+		<put-attribute name="fbLogin" value="/WEB-INF/tiles/template/facebookLoginScript.jsp" />
+	</definition>
+	
+	
+	<definition name="*" extends="main">
+		<put-attribute name="body" expression="/WEB-INF/views/{1}.jsp" />
+	</definition>
+	
+	<definition name="*/*" extends="main">
+		<put-attribute name="body" expression="/WEB-INF/views/{1}/{2}.jsp" />
+	</definition> 
+	
+	<definition name="*/*/*" extends="main">
+		<put-attribute name="body" expression="/WEB-INF/views/{1}/{2}/{3}.jsp" />
+	</definition>
+	
+	<definition name="sub/*/*/*" extends="main">
+		<put-attribute name="body" expression="/WEB-INF/views/sub/{1}/{2}/{3}.jsp" />
+	</definition> 
+	
+	<!-- image editor -->
+	<definition name="qqqqq" templateExpression="/daumeditor/image.jsp"></definition> 
+	
+</tiles-definitions>
